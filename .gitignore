@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Temporary / OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.log
+
+# Sensitive or runtime generated files
+*.pem
+
+# IDEs
+.vscode/
+.idea/
+
+# Local testing
+scratch/
+test_*.py
