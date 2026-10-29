@@ -105,8 +105,12 @@ class AirPlayEngine(QObject):
         self.lan_ip, self.lan_mac, self.lan_iface = get_physical_lan_info()
 
     def locate_binary(self) -> Optional[Path]:
-        current_dir = Path(__file__).resolve().parent.parent
-        local_bin = current_dir / "bin" / ("uxplay.exe" if platform.system() == "Windows" else "uxplay")
+        if getattr(sys, "frozen", False):
+            base_dir = Path(sys.executable).resolve().parent
+        else:
+            base_dir = Path(__file__).resolve().parent.parent
+
+        local_bin = base_dir / "bin" / ("uxplay.exe" if platform.system() == "Windows" else "uxplay")
         if local_bin.exists():
             return local_bin
 
@@ -252,7 +256,11 @@ class AirPlayEngine(QObject):
 
             # Add runtime DLLs and GStreamer plugins
             if platform.system() == "Windows":
-                project_root = Path(__file__).resolve().parent.parent
+                if getattr(sys, "frozen", False):
+                    project_root = Path(sys.executable).resolve().parent
+                else:
+                    project_root = Path(__file__).resolve().parent.parent
+
                 local_runtime_bin = project_root / "bin" / "runtime" / "bin"
                 local_plugins = project_root / "bin" / "runtime" / "lib" / "gstreamer-1.0"
 

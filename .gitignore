@@ -23,6 +23,11 @@ Desktop.ini
 .vscode/
 .idea/
 
+# Build / Packaging
+build/
+dist/
+*.spec
+
 # Local testing
 scratch/
 test_*.py

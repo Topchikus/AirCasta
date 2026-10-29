@@ -414,7 +414,12 @@ class DropCastWidget(QWidget):
         self.rec_count_label.setText(f"{total_received} " + ("файл" if total_received == 1 else "файлов"))
 
     def _fix_firewall(self):
-        ps_path = Path(__file__).resolve().parent.parent / "allow_firewall.ps1"
+        import sys
+        if getattr(sys, "frozen", False):
+            base_dir = Path(sys.executable).resolve().parent
+        else:
+            base_dir = Path(__file__).resolve().parent.parent
+        ps_path = base_dir / "allow_firewall.ps1"
         try:
             if ps_path.exists() and platform.system() == "Windows":
                 cmd = f'Start-Process powershell -Verb RunAs -ArgumentList \'-NoProfile -ExecutionPolicy Bypass -File "{ps_path}"\''
