@@ -17,6 +17,7 @@ Desktop.ini
 
 # Sensitive or runtime generated files
 *.pem
+/bin/runtime/
 
 # IDEs
 .vscode/

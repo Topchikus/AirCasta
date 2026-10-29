@@ -250,11 +250,20 @@ class AirPlayEngine(QObject):
             # Force UxPlay internal mDNS to use physical LAN IP
             env["AIRCASTA_IP"] = self.lan_ip
 
-            # Add MSYS2 DLLs to PATH
+            # Add runtime DLLs and GStreamer plugins
             if platform.system() == "Windows":
-                ucrt_bin = r"C:\msys64\ucrt64\bin"
-                if os.path.exists(ucrt_bin) and ucrt_bin not in env.get("PATH", ""):
-                    env["PATH"] = f"{ucrt_bin};" + env.get("PATH", "")
+                project_root = Path(__file__).resolve().parent.parent
+                local_runtime_bin = project_root / "bin" / "runtime" / "bin"
+                local_plugins = project_root / "bin" / "runtime" / "lib" / "gstreamer-1.0"
+
+                if local_runtime_bin.exists():
+                    env["PATH"] = f"{local_runtime_bin};" + env.get("PATH", "")
+                    env["GST_PLUGIN_PATH"] = str(local_plugins)
+                    env["GST_PLUGIN_SYSTEM_PATH"] = str(local_plugins)
+                else:
+                    ucrt_bin = r"C:\msys64\ucrt64\bin"
+                    if os.path.exists(ucrt_bin) and ucrt_bin not in env.get("PATH", ""):
+                        env["PATH"] = f"{ucrt_bin};" + env.get("PATH", "")
 
             # Launch process with pipes.
             # Do NOT use SW_HIDE or CREATE_NO_WINDOW as they hide the GStreamer Direct3D video window!
