@@ -88,21 +88,24 @@
 - **macOS:** macOS 12 Monterey, 13 Ventura, 14 Sonoma, 15 Sequoia (Intel и Apple Silicon M1/M2/M3/M4).
 - **iOS:** iPhone или iPad с iOS 9.3 до iOS 18+. Компьютер и iPhone должны быть подключены к одной локальной сети (или по USB-модему).
 
-### Быстрый запуск на Windows:
-В репозитории AirCasta уже собраны все необходимые компоненты и нативный движок в папке `bin/uxplay.exe`.
+### Способы запуска на Windows:
 
-1. Установите Python-зависимости (PyQt6, zeroconf, cryptography):
-   ```cmd
-   py -m pip install -r requirements.txt
+#### Вариант 1: Быстрый запуск (Готовая сборка — Рекомендуется)
+1. Скачайте архив **`AirCasta-Portable.zip`** со страницы **[Releases](https://github.com/Topchikus/AirCasta/releases)**.
+2. Распакуйте в любую папку.
+3. Запустите **`run.bat`** (скрипт автоматически проверит зависимости и запустит приложение).
+
+#### Вариант 2: Запуск из исходного кода
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/Topchikus/AirCasta.git
+   cd AirCasta
    ```
-2. Запустите приложение:
+2. Запустите:
    ```cmd
-   scripts\run_aircasta.bat
+   run.bat
    ```
-   или напрямую:
-   ```cmd
-   py main.py
-   ```
+   *(При первом запуске `run.bat` сам установит библиотеки из `requirements.txt`).*
 
 ### Сборка нативного бэкенда из исходного кода:
 
