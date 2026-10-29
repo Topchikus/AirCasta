@@ -7,6 +7,7 @@ and real-time reception of photos, videos, and documents (iPhone -> PC).
 import os
 import platform
 import subprocess
+import sys
 from io import BytesIO
 from pathlib import Path
 from typing import List, Optional
@@ -414,7 +415,6 @@ class DropCastWidget(QWidget):
         self.rec_count_label.setText(f"{total_received} " + ("файл" if total_received == 1 else "файлов"))
 
     def _fix_firewall(self):
-        import sys
         if getattr(sys, "frozen", False):
             base_dir = Path(sys.executable).resolve().parent
         else:
