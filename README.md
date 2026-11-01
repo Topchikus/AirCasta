@@ -16,7 +16,8 @@
 > Автономный бинарный релиз (`AirCasta-v1.0-Standalone-Win64.zip`): **не требует установки Python** или дополнительных драйверов. Распакуйте и запустите `AirCasta.exe`.
 
 ---
-*Внешний вид программы
+**Внешний вид программы**
+
 <img width="880" height="605" alt="image" src="https://github.com/user-attachments/assets/7f5defd9-4e25-42de-8449-11b71666927b" />
 
 
